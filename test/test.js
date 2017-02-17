@@ -43,24 +43,24 @@ test('addStylesClient (prod + ssr)', () => {
 })
 
 test('addStylesServer (dev)', () => {
-  const context = global.__VUE_SSR_CONTEXT__ = {}
+  const context = global.__REACT_SSR_CONTEXT__ = {}
   addStylesServer('foo', mockedList, false)
   expect(context.styles).toBe(
-    `<style data-vue-ssr-id="foo:0">h1 { color: red; }</style>` +
-    `<style data-vue-ssr-id="foo:1">p { color: green; }</style>` +
-    `<style data-vue-ssr-id="foo:2">span { color: blue; }</style>` +
-    `<style data-vue-ssr-id="foo:3" media="print">span { color: blue; }</style>`
+    `<style data-react-ssr-id="foo:0">h1 { color: red; }</style>` +
+    `<style data-react-ssr-id="foo:1">p { color: green; }</style>` +
+    `<style data-react-ssr-id="foo:2">span { color: blue; }</style>` +
+    `<style data-react-ssr-id="foo:3" media="print">span { color: blue; }</style>`
   )
 })
 
 test('addStylesServer (prod)', () => {
-  const context = global.__VUE_SSR_CONTEXT__ = {}
+  const context = global.__REACT_SSR_CONTEXT__ = {}
   addStylesServer('foo', mockedList, true)
   expect(context.styles).toBe(
-    `<style data-vue-ssr-id="foo:0 foo:1 foo:2">` +
+    `<style data-react-ssr-id="foo:0 foo:1 foo:2">` +
       `h1 { color: red; }\np { color: green; }\nspan { color: blue; }` +
     `</style>` +
-    `<style data-vue-ssr-id="foo:3" media="print">span { color: blue; }</style>`
+    `<style data-react-ssr-id="foo:3" media="print">span { color: blue; }</style>`
   )
 })
 
@@ -77,7 +77,7 @@ function assertStylesMatch (list) {
 function mockSSRTags (list, parentId) {
   list.forEach((item, i) => {
     const style = document.createElement('style')
-    style.setAttribute('data-vue-ssr-id', `${parentId}:${i}`)
+    style.setAttribute('data-react-ssr-id', `${parentId}:${i}`)
     style.textContent = item[1]
     if (item[2]) {
       style.setAttribute('media', item[2])
@@ -88,7 +88,7 @@ function mockSSRTags (list, parentId) {
 
 function mockProdSSRTags (list, parentId) {
   const style = document.createElement('style')
-  style.setAttribute('data-vue-ssr-id', list.map((item, i) => `${parentId}:${i}`).join(' '))
+  style.setAttribute('data-react-ssr-id', list.map((item, i) => `${parentId}:${i}`).join(' '))
   style.textContent = list.map(item => item[1]).join('\n')
   document.head.appendChild(style)
 }

@@ -1,12 +1,12 @@
-# vue-style-loader [![Build Status](https://circleci.com/gh/vuejs/vue-style-loader/tree/master.svg?style=shield)](https://circleci.com/gh/vuejs/vue-loader/tree/master) [![npm package](https://img.shields.io/npm/v/vue-style-loader.svg)](https://www.npmjs.com/package/vue-style-loader)
+# react-style-loader [![Build Status](https://circleci.com/gh/JounQin/react-style-loader/tree/master.svg?style=shield)](https://circleci.com/gh/JounQin/react-style-loader/tree/master) [![npm package](https://img.shields.io/npm/v/react-style-loader.svg)](https://www.npmjs.com/package/react-style-loader)
 
-This is a fork based on [style-loader](https://github.com/webpack/style-loader). Similar to `style-loader`, you can chain it after `css-loader` to dynamically inject CSS into the document as style tags. However, since this is included as a dependency and used by default in `vue-loader`, in most cases you don't need to configure this loader yourself.
+This is a fork based on [style-loader](https://github.com/webpack/style-loader). Similar to `style-loader`, you can chain it after `css-loader` to dynamically inject CSS into the document as style tags.
 
 ### Differences from `style-loader`
 
 #### Server-Side Rendering Support
 
-When bundling with `target: 'node'`, the styles in all rendered components are collected and exposed on the Vue render context object as `context.styles`, which you can simply inline into your markup's `<head>`. If you are building a Vue SSR app, you probably should use this loader for CSS imported from JavaScript files too.
+When bundling with `target: 'node'`, the styles in all rendered components are collected and exposed on the React render context object as `context.styles`, which you can simply inline into your markup's `<head>`. If you are building a React SSR app, you probably should use this loader for CSS imported from JavaScript files too.
 
 #### Misc
 

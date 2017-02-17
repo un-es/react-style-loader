@@ -1,11 +1,11 @@
 {
-  "name": "vue-style-loader",
-  "version": "2.0.0",
-  "author": "Evan You",
-  "description": "Vue.js style loader module for webpack",
+  "name": "react-style-loader",
+  "version": "0.1.0",
+  "author": "JounQin",
+  "description": "React.js style loader module for webpack",
   "repository": {
     "type": "git",
-    "url": "git@github.com:vuejs/vue-style-loader.git"
+    "url": "git@github.com:JounQin/react-style-loader.git"
   },
   "scripts": {
     "test": "jest"
