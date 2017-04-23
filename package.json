@@ -1,6 +1,6 @@
 {
   "name": "react-style-loader",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "JounQin",
   "description": "React.js style loader module for webpack",
   "repository": {
@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "hash-sum": "^1.0.2",
-    "loader-utils": "^0.2.7"
+    "loader-utils": "^1.0.2"
   },
   "devDependencies": {
     "jest": "^18.1.0"
