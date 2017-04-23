@@ -21,9 +21,9 @@ module.exports.pitch = function (remainingRequest) {
   var id = JSON.stringify(hash(request))
 
   // direct css import from js --> direct (how does this work when inside an async chunk? ...just don't do it)
-  // css import from vue file --> component lifecycle linked
-  // style embedded in vue file --> component lifecycle linked
-  var isVue = /"vue":true/.test(remainingRequest)
+  // css import from react file --> component lifecycle linked
+  // style embedded in react file --> component lifecycle linked
+  var isReact = /"react":true/.test(remainingRequest)
 
   var shared = [
     '// style-loader: Adds some css to the DOM by adding a <style> tag',
@@ -60,9 +60,9 @@ module.exports.pitch = function (remainingRequest) {
     }
     return shared.concat(code).join('\n')
   } else {
-    // on the server: attach to Vue SSR context
-    if (isVue) {
-      // inside *.vue file: expose a function so it can be called in
+    // on the server: attach to React SSR context
+    if (isReact) {
+      // inside *.react file: expose a function so it can be called in
       // component's lifecycle hooks
       return shared.concat([
         '// add CSS to SSR context',
