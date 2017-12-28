@@ -20,10 +20,10 @@ module.exports.pitch = function (remainingRequest) {
   var request = loaderUtils.stringifyRequest(this, '!!' + remainingRequest)
   var id = JSON.stringify(hash(request))
 
-  // direct css import from js --> direct (how does this work when inside an async chunk? ...just don't do it)
+  // direct css import from js --> direct for non react file and manually call `styles.__inject__(ssrContext)` in component lifecycle for react file
   // css import from react file --> component lifecycle linked
   // style embedded in react file --> component lifecycle linked
-  var isReact = /"react":true/.test(remainingRequest)
+  var isReact = /"react":true/.test(remainingRequest) || loaderUtils.getOptions(this).react
 
   var shared = [
     '// style-loader: Adds some css to the DOM by adding a <style> tag',
@@ -62,7 +62,7 @@ module.exports.pitch = function (remainingRequest) {
   } else {
     // on the server: attach to React SSR context
     if (isReact) {
-      // inside *.react file: expose a function so it can be called in
+      // inside react file: expose a function so it can be called in
       // component's lifecycle hooks
       return shared.concat([
         '// add CSS to SSR context',
