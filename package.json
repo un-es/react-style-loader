@@ -1,6 +1,6 @@
 {
   "name": "react-style-loader",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "author": "JounQin",
   "description": "React.js style loader module for webpack",
   "repository": {
@@ -16,6 +16,6 @@
     "loader-utils": "^1.1.0"
   },
   "devDependencies": {
-    "jest": "^22.0.4"
+    "jest": "^22.1.4"
   }
 }

@@ -21,10 +21,10 @@ module.exports.pitch = function (remainingRequest) {
   var id = JSON.stringify(hash(request + path.relative(__dirname, this.resourcePath)))
   var options = loaderUtils.getOptions(this) || {}
 
-  // direct css import from js --> direct for non react file and manually call `styles.__inject__(ssrContext)` in component lifecycle for react file
+  // direct css import from js --> direct, or manually call `styles.__inject__(ssrContext)` with `manualInject` option
   // css import from react file --> component lifecycle linked
   // style embedded in react file --> component lifecycle linked
-  var isReact = /"react":true/.test(remainingRequest) || options.react
+  var isReact = /"react":true/.test(remainingRequest) || options.manualInject
 
   var shared = [
     '// style-loader: Adds some css to the DOM by adding a <style> tag',
@@ -40,7 +40,7 @@ module.exports.pitch = function (remainingRequest) {
     // on the client: dynamic inject + hot-reload
     var code = [
       '// add the styles to the DOM',
-      'var update = require(' + addStylesClientPath + ')(' + id + ', content, ' + isProduction + ');'
+      'var update = require(' + addStylesClientPath + ')(' + id + ', content, ' + isProduction + ', ' + JSON.stringify(options) + ');'
     ]
     if (!isProduction) {
       code = code.concat([
