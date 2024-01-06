@@ -18,8 +18,8 @@
   "scripts": {
     "lint": "eslint . --cache",
     "prepare": "simple-git-hooks",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
-    "release": "clean-pkg-json && changeset publish"
+    "release": "clean-pkg-json && changeset publish",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "dependencies": {
     "hash-sum": "^2.0.0",
@@ -58,5 +58,10 @@
     "collectCoverage": true,
     "testEnvironment": "jsdom"
   },
-  "prettier": "@1stg/prettier-config"
+  "prettier": "@1stg/prettier-config",
+  "renovate": {
+    "extends": [
+      "@1stg"
+    ]
+  }
 }

@@ -32,8 +32,8 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          commit: 'chore: release synckit'
-          title: 'chore: release synckit'
+          commit: 'chore: release react-style-loader'
+          title: 'chore: release react-style-loader'
           publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
