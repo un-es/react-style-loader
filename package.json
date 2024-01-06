@@ -1,12 +1,16 @@
 {
   "name": "react-style-loader",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "author": "JounQin",
   "description": "React.js style loader module for webpack",
   "repository": {
     "type": "git",
     "url": "git@github.com:un-es/react-style-loader.git"
   },
+  "files": [
+    "lib",
+    "index.js"
+  ],
   "scripts": {
     "test": "jest",
     "prepublishOnly": "conventional-changelog -p angular -r 2 -i CHANGELOG.md -s"
@@ -22,5 +26,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "conventional-changelog-cli": "^2.0.1",
     "jest": "^22.1.4"
+  },
+  "jest": {
+    "collectCoverage": true
   }
 }

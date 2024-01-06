@@ -1,3 +1,18 @@
+<a name="2.4.1"></a>
+## [2.4.1](https://github.com/un-es/react-style-loader/compare/v4.1.3...v2.4.1) (2024-01-06)
+
+
+### Bug Fixes
+
+* only include necessary files ([54b141e](https://github.com/un-es/react-style-loader/commit/54b141e))
+
+
+### Features
+
+* restart development ([5c54b99](https://github.com/un-es/react-style-loader/commit/5c54b99))
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/un-es/react-style-loader/compare/v4.1.3...v2.4.0) (2024-01-06)
 
