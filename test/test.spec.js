@@ -5,7 +5,7 @@ const mockedList = [
   [1, 'h1 { color: red; }', ''],
   [1, 'p { color: green; }', ''],
   [2, 'span { color: blue; }', ''],
-  [2, 'span { color: blue; }', 'print']
+  [2, 'span { color: blue; }', 'print'],
 ]
 
 test('addStylesClient (dev)', () => {
@@ -38,57 +38,57 @@ test('addStylesClient (dev + ssr)', () => {
 
 test('addStylesClient (prod + ssr)', () => {
   mockProdSSRTags(mockedList, 'foo')
-  const update = addStylesClient('foo', mockedList, true)
+  addStylesClient('foo', mockedList, true)
   expect(document.querySelectorAll('style').length).toBe(1)
 })
 
 test('addStylesServer (dev)', () => {
-  const context = global.__REACT_SSR_CONTEXT__ = {}
+  const context = (global.__REACT_SSR_CONTEXT__ = {})
   addStylesServer('foo', mockedList, false)
   expect(context.styles).toBe(
     `<style data-react-ssr-id="foo:0">h1 { color: red; }</style>` +
-    `<style data-react-ssr-id="foo:1">p { color: green; }</style>` +
-    `<style data-react-ssr-id="foo:2">span { color: blue; }</style>` +
-    `<style data-react-ssr-id="foo:3" media="print">span { color: blue; }</style>`
+      `<style data-react-ssr-id="foo:1">p { color: green; }</style>` +
+      `<style data-react-ssr-id="foo:2">span { color: blue; }</style>` +
+      `<style data-react-ssr-id="foo:3" media="print">span { color: blue; }</style>`,
   )
 })
 
 test('addStylesServer (prod)', () => {
-  const context = global.__REACT_SSR_CONTEXT__ = {}
+  const context = (global.__REACT_SSR_CONTEXT__ = {})
   addStylesServer('foo', mockedList, true)
   expect(context.styles).toBe(
     `<style data-react-ssr-id="foo:0 foo:1 foo:2">` +
       `h1 { color: red; }\np { color: green; }\nspan { color: blue; }` +
-    `</style>` +
-    `<style data-react-ssr-id="foo:3" media="print">span { color: blue; }</style>`
+      `</style>` +
+      `<style data-react-ssr-id="foo:3" media="print">span { color: blue; }</style>`,
   )
 })
 
 // --- helpers ---
 
-function assertStylesMatch (list) {
+function assertStylesMatch(list) {
   const styles = document.querySelectorAll('style')
   expect(styles.length).toBe(list.length)
-  ;[].forEach.call(styles, (style, i) => {
-    expect(style.textContent.indexOf(list[i][1]) > -1).toBe(true)
+  Array.prototype.forEach.call(styles, (style, i) => {
+    expect(style.textContent.includes(list[i][1])).toBe(true)
   })
 }
 
-function mockSSRTags (list, parentId) {
-  list.forEach((item, i) => {
+function mockSSRTags(list, parentId) {
+  for (const [i, item] of list.entries()) {
     const style = document.createElement('style')
-    style.setAttribute('data-react-ssr-id', `${parentId}:${i}`)
+    style.dataset.reactSsrId = `${parentId}:${i}`
     style.textContent = item[1]
     if (item[2]) {
       style.setAttribute('media', item[2])
     }
-    document.head.appendChild(style)
-  })
+    document.head.append(style)
+  }
 }
 
-function mockProdSSRTags (list, parentId) {
+function mockProdSSRTags(list, parentId) {
   const style = document.createElement('style')
-  style.setAttribute('data-react-ssr-id', list.map((item, i) => `${parentId}:${i}`).join(' '))
+  style.dataset.reactSsrId = list.map((_, i) => `${parentId}:${i}`).join(' ')
   style.textContent = list.map(item => item[1]).join('\n')
-  document.head.appendChild(style)
+  document.head.append(style)
 }

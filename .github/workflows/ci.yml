@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         node:
-          - 16
           - 18
           - 20
         os:
@@ -20,6 +19,9 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
@@ -27,7 +29,7 @@ jobs:
           cache: yarn
 
       - name: Install Dependencies
-        run: yarn --lock-file
+        run: yarn --immutable
 
       - name: Test
         run: yarn test

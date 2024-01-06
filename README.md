@@ -8,7 +8,7 @@ This is a fork based on [vue-style-loader](https://github.com/vuejs/vue-style-lo
 
   Type: `boolean`. When importing the style from a js file, by default the style is injected as a side effect of the import. When `manualInject` is true, the imported style object exposes a `__inject__` method, which can then be called manually at appropriate timing. If called on the server, the method expects one argument which is the `ssrContext` to attach styles to.
 
-  ``` js
+  ```js
   import React from 'react'
 
   import styles from 'styles.scss'
@@ -38,7 +38,7 @@ When bundling with `target: 'node'`, the styles in all rendered components are c
 
 To use `react-style-loader` to collect all styles on server, you need to separate loading global styles and async component styles, because we need to collect them through `componentWillMount` lifecycle on runtime, so you need add a option `react: true` to this loader for async component styles, then you will be able to use `styles.__inject__(userContext)` on server side.
 
-##### Real world configuration
+### Real world configuration
 
 ```js
 import webpack from 'webpack'
