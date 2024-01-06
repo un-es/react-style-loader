@@ -23,12 +23,12 @@ module.exports.pitch = function (remainingRequest) {
   var options = loaderUtils.getOptions(this) || {}
 
   // direct css import from js --> direct, or manually call `styles.__inject__(ssrContext)` with `manualInject` option
-  // css import from vue file --> component lifecycle linked
-  // style embedded in vue file --> component lifecycle linked
-  var isVue = (
-    /"vue":true/.test(remainingRequest) ||
-    options.manualInject ||
-    qs.parse(this.resourceQuery.slice(1)).vue != null
+  // css import from react file --> component lifecycle linked
+  // style embedded in react file --> component lifecycle linked
+  var isReact = (
+    /"react":true/.test(remainingRequest) ||
+    options.manualInject !== false ||
+    qs.parse(this.resourceQuery.slice(1)).react != null
   )
 
   var shared = [
@@ -80,9 +80,9 @@ module.exports.pitch = function (remainingRequest) {
     }
     return shared.concat(code).join('\n')
   } else {
-    // on the server: attach to Vue SSR context
-    if (isVue) {
-      // inside *.vue file: expose a function so it can be called in
+    // on the server: attach to React SSR context
+    if (isReact) {
+      // inside react file: expose a function so it can be called in
       // component's lifecycle hooks
       return shared.concat([
         '// add CSS to SSR context',

@@ -1,3 +1,13 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/un-es/react-style-loader/compare/v4.1.3...v2.4.0) (2024-01-06)
+
+
+### Features
+
+* restart development ([efe776d](https://github.com/un-es/react-style-loader/commit/efe776d))
+
+
+
 <a name="4.1.3"></a>
 ## [4.1.3](https://github.com/vuejs/vue-style-loader/compare/v4.0.1...v4.1.3) (2021-03-03)
 

@@ -5,7 +5,7 @@ jobs:
       # https://circleci.com/docs/2.0/circleci-images/#nodejs
       - image: circleci/node:6
 
-    working_directory: ~/vue-style-loader
+    working_directory: ~/react-style-loader
 
     steps:
       - checkout
