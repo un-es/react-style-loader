@@ -1,5 +1,11 @@
 <a name="2.4.1"></a>
 
+## 3.0.0
+
+### Major Changes
+
+- [#14](https://github.com/un-es/react-style-loader/pull/14) [`5722fd9`](https://github.com/un-es/react-style-loader/commit/5722fd989dceab65d8a373f230a89413324c0f5d) Thanks [@JounQin](https://github.com/JounQin)! - feat!: bump dependencies, drop Node `<16.9.0`
+
 ## [2.4.1](https://github.com/un-es/react-style-loader/compare/v4.1.3...v2.4.1) (2024-01-06)
 
 ### Bug Fixes
