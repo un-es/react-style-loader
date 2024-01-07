@@ -1,5 +1,11 @@
 <a name="2.4.1"></a>
 
+## 3.0.1
+
+### Patch Changes
+
+- [#17](https://github.com/un-es/react-style-loader/pull/17) [`1c4909a`](https://github.com/un-es/react-style-loader/commit/1c4909a56355c94361ee800765c1829e12162401) Thanks [@JounQin](https://github.com/JounQin)! - fix: better compatible with webpack v4/v5
+
 ## 3.0.0
 
 ### Major Changes
