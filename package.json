@@ -1,6 +1,6 @@
 {
   "name": "react-style-loader",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "description": "React.js style loader module for webpack",
   "repository": "git+https://github.com/un-es/react-style-loader.git",
