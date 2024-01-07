@@ -1,8 +1,15 @@
+// @ts-check
+
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
   Modified by Evan You @yyx990803
 */
+
+/**
+ * @typedef {{manualInject?: boolean; shadowMode?: boolean; ssrId?: string}} LoaderOptions
+ * @typedef {import('webpack').LoaderContext<LoaderOptions>} LoaderContext
+ */
 
 const path = require('node:path')
 const qs = require('node:querystring')
@@ -13,28 +20,45 @@ const loaderUtils = require('loader-utils')
 // eslint-disable-next-line no-empty-function
 module.exports = function () {}
 
+/**
+ * @param {LoaderContext} loaderContext
+ * @param {string} request
+ * @returns {string} stringified request
+ */
+const stringifyRequest = (loaderContext, request) =>
+  loaderContext.utils
+    ? JSON.stringify(
+        loaderContext.utils.contextify(loaderContext.context, request),
+      )
+    : loaderUtils.stringifyRequest(loaderContext, request)
+
+/**
+ * @this {LoaderContext & {minimize?: boolean}}
+ * @param {string} remainingRequest
+ * @returns {string} transformed codes
+ */
 module.exports.pitch = function (remainingRequest) {
   const isServer = this.target === 'node'
   const isProduction = this.minimize || process.env.NODE_ENV === 'production'
-  const addStylesClientPath = loaderUtils.stringifyRequest(
+  const addStylesClientPath = stringifyRequest(
     this,
     '!' + path.join(__dirname, 'lib/addStylesClient.js'),
   )
-  const addStylesServerPath = loaderUtils.stringifyRequest(
+  const addStylesServerPath = stringifyRequest(
     this,
     '!' + path.join(__dirname, 'lib/addStylesServer.js'),
   )
-  const addStylesShadowPath = loaderUtils.stringifyRequest(
+  const addStylesShadowPath = stringifyRequest(
     this,
     '!' + path.join(__dirname, 'lib/addStylesShadow.js'),
   )
 
-  const request = loaderUtils.stringifyRequest(this, '!!' + remainingRequest)
+  const request = stringifyRequest(this, '!!' + remainingRequest)
   const relPath = path
     .relative(__dirname, this.resourcePath)
     .replaceAll('\\', '/')
   const id = JSON.stringify(hash(request + relPath))
-  const options = loaderUtils.getOptions(this) || {}
+  const options = this.getOptions?.() || loaderUtils.getOptions(this) || {}
 
   // direct css import from js --> direct, or manually call `styles.__inject__(ssrContext)` with `manualInject` option
   // css import from react file --> component lifecycle linked

@@ -1,5 +1,5 @@
-import addStylesClient from '../lib/addStylesClient'
-import addStylesServer from '../lib/addStylesServer'
+import addStylesClient from '../lib/addStylesClient.js'
+import addStylesServer from '../lib/addStylesServer.js'
 
 const mockedList = [
   [1, 'h1 { color: red; }', ''],
