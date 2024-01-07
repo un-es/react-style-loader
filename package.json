@@ -16,6 +16,7 @@
     "lib"
   ],
   "scripts": {
+    "codesandbox:install": "yarn --ignore-engines",
     "lint": "eslint . --cache",
     "prepare": "simple-git-hooks",
     "release": "clean-pkg-json && changeset publish",
