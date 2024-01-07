@@ -1,4 +1,4 @@
-# react-style-loader [![Build Status](https://circleci.com/gh/un-es/react-style-loader/tree/master.svg?style=shield)](https://circleci.com/gh/un-es/react-style-loader/tree/master) [![npm package](https://img.shields.io/npm/v/react-style-loader.svg)](https://www.npmjs.com/package/react-style-loader)
+# react-style-loader ![CI Status](https://img.shields.io/github/actions/workflow/status/un-es/react-style-loader/ci.yml?branch=master) [![npm package](https://img.shields.io/npm/v/react-style-loader.svg)](https://www.npmjs.com/package/react-style-loader)
 
 This is a fork based on [vue-style-loader](https://github.com/vuejs/vue-style-loader). Similar to `vue-style-loader`, you can chain it after `css-loader` to dynamically inject CSS into the document as style tags.
 
